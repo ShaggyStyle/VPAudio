@@ -12,11 +12,18 @@
             background-color: hsl(131.42deg 5.83% 18.94%);
             font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif; 
             box-shadow: 0 0 5vw rgb(0 0 0 / 30%) inset;
+            animation: colorChange 10s infinite;
         }
         h1 {
             font-size: 36vh;
             color: #90002a;
             text-shadow: 0 0 1vw rgb(255 255 255 /15%);
+        }
+        @keyframes colorChange {
+            0% { background-color: hsl(131.42deg 5.83% 18.94%); }
+            33% { background-color: hsl(221.42deg 5.83% 18.94%); }
+            66% { background-color: hsl(311.42deg 5.83% 18.94%); }
+            100% { background-color: hsl(41.42deg 5.83% 18.94%); }
         }
     </style>
 </head>
