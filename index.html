@@ -13,6 +13,9 @@
 			color: #9E8D6E;
   			background: #3F382C;
 		}
+		::backdrop {
+			background: transparent;
+		}
 		.bg {
 		position: fixed;
 		top: -50%;
@@ -49,7 +52,7 @@
 			align-items: center;
 			height: 100vh;
 			margin: 0;
-			background-color: hsl(131.42deg 5.83% 18.94%);
+			background-color: hsl(131.42deg var(--s) var(--l));
 			font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
 			box-shadow: 0 0 6vw rgb(0 0 0 / 60%) inset;
 			animation: colorChange 180s infinite;
@@ -72,5 +75,16 @@
 <body>
 	<h1>VPAudio</h1>
 	<div class="bg"></div>
+	<script>
+		document.body.addEventListener('dblclick', () => {
+			if (document.fullscreenElement) {
+				screen.orientation.unlock();
+				document.exitFullscreen();
+			} else {
+				document.body.requestFullscreen();
+				screen.orientation.lock('landscape').catch(() =>null);
+			}
+		});
+	</script>
 </body>
 </html>
