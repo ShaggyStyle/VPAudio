@@ -8,6 +8,7 @@
 			 --s: 25.83%;
 			 --l: 8.94%;
 			 --or: .3;
+			 --rpm: 78;
 		}
 		::selection {
 				color: #9E8D6E;
@@ -70,7 +71,17 @@
 			font-size: 16vw;
 			color: hsl(342deg 100% 28%);
 			text-shadow: 0 1vw 0.5vw rgb(0 0 0 / 75%);
-			filter: blur(0.07vw)
+			filter: blur(0.07vw);			
+		}
+
+		.ritmo h1 {
+			animation: escala calc(60s/var(--rpm)*4) infinite;
+		}
+		.ritmo .destello {
+			position:absolute;
+			width: 100vw;
+			height: 100vh;
+			animation: destello calc(60s/var(--rpm)) infinite;
 		}
 		@keyframes colorChange {
 			0% { background-color: hsl(131.42deg var(--s) var(--l)); }
@@ -79,12 +90,24 @@
 			75% { background-color: hsl(41.42deg var(--s) var(--l)); }
 			100% { background-color: hsl(131.42deg var(--s) var(--l)); }
 		}
+		@keyframes destello {
+			0% { backdrop-filter: saturate(100%) brightness(1); }
+			10% { backdrop-filter: saturate(130%) brightness(1); }
+			50% { backdrop-filter: saturate(100%) brightness(1); }
+		}
+		@keyframes escala {
+			0% { transform:scale(1); text-shadow: 0 1vw 0.5vw rgb(0 0 0 / 75%);  }
+			3% { transform:scale(1.01); text-shadow: 0 2.5vw 0.75vw rgb(0 0 0 / 30%); }
+			9% { transform:scale(1); text-shadow: 0 1vw 0.5vw rgb(0 0 0 / 75%); }
+		}
+
 	</style>
 </head>
 <body class="rotcol">
-	<h1>VPAudio</h1>
+	<h1>&nbsp;VPAudio&nbsp;</h1>
 	<div class="vidrio"></div>
 	<div class="ruido"></div>
+	<div class="destello"></div>
 	<script>
 		document.body.addEventListener('dblclick', () => {
 			if (document.fullscreenElement) {
@@ -95,6 +118,14 @@
 				screen.orientation.lock('landscape').catch(() =>null);
 			}
 		});
+		document.addEventListener("fullscreenchange",() => {
+				if (document.fullscreenElement) {
+					document.querySelector("body").classList.add("ritmo")
+				} else {
+					document.querySelector("body").classList.remove("ritmo")
+
+				}
+			});		
 	</script>
 </body>
 </html>
