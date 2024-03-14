@@ -118,12 +118,19 @@
 				screen.orientation.lock('landscape').catch(() =>null);
 			}
 		});
-		document.addEventListener("fullscreenchange",() => {
+		let wl = null;
+		
+		document.addEventListener("fullscreenchange",async () => {
 				if (document.fullscreenElement) {
-					document.querySelector("body").classList.add("ritmo")
-				} else {
-					document.querySelector("body").classList.remove("ritmo")
-
+					document.querySelector("body").classList.add("ritmo");
+					try {						
+						wl = await navigator.wakeLock.request("screen");
+					} catch {
+						// Meh!
+					}
+				} else {					
+					document.querySelector("body").classList.remove("ritmo");
+					if (wl) wl.release();
 				}
 			});		
 	</script>
