@@ -122,7 +122,10 @@
 		
 		document.addEventListener("fullscreenchange",async () => {
 				if (document.fullscreenElement) {
-					document.querySelector("body").classList.add("ritmo");
+					setTimeout(()=>{
+						document.querySelector("body").classList.add("ritmo");
+					},6000);
+					
 					try {						
 						wl = await navigator.wakeLock.request("screen");
 					} catch {
